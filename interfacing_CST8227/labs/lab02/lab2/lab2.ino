@@ -89,11 +89,38 @@ void launch_mspaint()
   Keyboard.send_now();
   release();
   moveMouse();
+  delay(300);
+  Keyboard.set_modifier(MODIFIERKEY_CTRL);   
+  Keyboard.set_key1(KEY_S);
+  Keyboard.send_now();
+  delay(300);
+  Keyboard.set_key1(KEY_ENTER);
+  Keyboard.send_now();
+    release();
+  Keyboard.set_key1(KEY_LEFT);
+  Keyboard.send_now();
+  delay(20);
+  Keyboard.set_key1(KEY_ENTER);
+  Keyboard.send_now();
+  release();
+  
+  //set as bg
+  Keyboard.set_modifier(MODIFIERKEY_ALT);
+  Keyboard.set_key1(KEY_F);
+  Keyboard.send_now();
+  release();
+  
+  Keyboard.set_modifier(KEY_B);
+  Keyboard.send_now();
+  Keyboard.set_modifier(KEY_T);
+  Keyboard.send_now();
 }
 
 void release()
 {
-  // release all the keys at the same
+  // release all the keys at th
+  
+  
   Keyboard.set_modifier(0);
   Keyboard.set_key1(0);
   Keyboard.send_now();
