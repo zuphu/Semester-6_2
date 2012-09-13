@@ -22,7 +22,43 @@ void launch_notepad()
 {   
   launch_run("notepad");
   notepad_text();
+}
 
+void final_words()
+{
+  Keyboard.print("TEENSY:");
+  release();
+  delay(1000); 
+  Keyboard.print(" Not quite a happy face");
+  release();
+  delay(1000);
+  Keyboard.print(" =");
+  release();
+  delay(1000);
+  Keyboard.print(" |");
+  release();
+  delay(2500);
+  Keyboard.print("\nTEENSY: Check your desktop!");
+  release();
+  delay(2500);
+  Keyboard.set_modifier(MODIFIERKEY_ALT);
+  Keyboard.set_key1(KEY_SPACE);
+  Keyboard.send_now();
+  delay(100);
+  Keyboard.set_key1(KEY_C);
+  Keyboard.send_now();
+  release();
+  delay(500);
+  Keyboard.set_key1(KEY_TAB);
+  Keyboard.send_now();
+  Keyboard.set_key1(KEY_ENTER);
+  Keyboard.send_now();
+  release();
+  delay(500);
+  Keyboard.set_modifier(MODIFIERKEY_GUI);
+  Keyboard.set_key1(KEY_D);
+  Keyboard.send_now();
+  release();
 }
 
 void notepad_text()
@@ -41,6 +77,7 @@ void notepad_text()
   Keyboard.print("TEENSY: launching mspaint\n");
   release();
   delay(1000);
+  
 }
 void launch_run(char *text)
 {
@@ -110,9 +147,9 @@ void launch_mspaint()
   Keyboard.send_now();
   release();
   
-  Keyboard.set_key1(KEY_B);
+  Keyboard.set_key1(KEY_K);
   Keyboard.send_now();
-  Keyboard.set_modifier(KEY_T);
+  Keyboard.set_key1(KEY_T);
   Keyboard.send_now();
   release();
   Keyboard.set_modifier(MODIFIERKEY_ALT);
@@ -120,8 +157,19 @@ void launch_mspaint()
   Keyboard.send_now();
   release();
   delay(2000);
-  Keyboard.set_key1(KEY_X);
+  Keyboard.set_key1(KEY_C);
+  Keyboard.send_now();
+  release();
   delay(1000);
+  Keyboard.set_modifier(MODIFIERKEY_ALT);
+  Keyboard.set_key1(KEY_SPACE);
+  Keyboard.send_now();
+  delay(100);
+  Keyboard.set_key1(KEY_C);
+  Keyboard.send_now();
+  release();
+  delay(1000);
+  final_words();
 }
 
 void release()
