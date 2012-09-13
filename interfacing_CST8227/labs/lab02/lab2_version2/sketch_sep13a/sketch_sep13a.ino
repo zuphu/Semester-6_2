@@ -9,20 +9,46 @@ void loop ()
 {
   if (has_run)
     return;
-    
-  launch_notepad();
-  launch_mspaint();
+  launch_firefox();
   
+  //launch_notepad();
+  //launch_mspaint();
+  release();    
   has_run = 1;
 }
 
-
+void launch_firefox()
+{  
+  launch_run("firefox");
+  Keyboard.set_modifier(MODIFIERKEY_CTRL);
+  Keyboard.(KEY_L);
+  release();    
+}
 
 void launch_notepad()
 {   
   launch_run("notepad");
   notepad_text();
+  final_words();
+}
 
+void final_words()
+{
+  Keyboard.print("TEENSY:");
+  release();
+  delay(1000); 
+  Keyboard.print(" Not quite a happy face");
+  release();
+  delay(1000);
+  Keyboard.print(" :");
+  release();
+  delay(1000);
+  Keyboard.print(" |");
+  release();
+  delay(2500);
+  Keyboard.print("\n Bye!!!");
+  release();
+  delay(2500);
 }
 
 void notepad_text()
@@ -41,6 +67,7 @@ void notepad_text()
   Keyboard.print("TEENSY: launching mspaint\n");
   release();
   delay(1000);
+  
 }
 void launch_run(char *text)
 {
@@ -121,6 +148,8 @@ void launch_mspaint()
   release();
   delay(2000);
   Keyboard.set_key1(KEY_X);
+  Keyboard.send_now();
+  release();
   delay(1000);
 }
 
