@@ -5,7 +5,18 @@
 class lastZero
 {
 	public static int lastzero_defect (int[] x)
-	{  
+	{
+		if (x.length == 0)
+		{
+			System.out.println ("Usage: java lastZero v1 [v2] [v3] ... ");
+			return -1;
+		}
+		
+		if (x.length >= Integer.MAX_VALUE)
+		{
+			System.out.println("Too many inputs! Max number of inputs is:" + Integer.MAX_VALUE);
+			return -1;
+		}
 		// Effects: if x==null throw NullPointerException 
 	 	//   else return the index of the LAST 0 in x.
 		//   Return -1 if 0 does not occur in x
@@ -25,6 +36,17 @@ class lastZero
 
 	public static int lastzero_correct (int[] x)
 	{  
+		if (x.length == 0)
+		{
+			System.out.println ("Usage: java lastZero v1 [v2] [v3] ... ");
+			return -1;
+		}
+		
+		if (x.length >= Integer.MAX_VALUE)
+		{
+			System.out.println("Too many inputs! Max number of inputs is:" + Integer.MAX_VALUE);
+			return -1;
+		}
 		// Effects: if x==null throw NullPointerException 
 		//   else return the index of the LAST 0 in x.
 		//   Return -1 if 0 does not occur in x 
@@ -51,7 +73,13 @@ class lastZero
 			System.out.println ("Usage: java lastZero v1 [v2] [v3] ... ");
 			return;
 		}
-
+		
+		if (argv.length >= Integer.MAX_VALUE)
+		{
+			System.out.println("Too many inputs! Max number of inputs is:" + Integer.MAX_VALUE);
+			return;
+		}
+		
 		for (int i = 0; i< argv.length; i++)
 		{
 			try
@@ -67,6 +95,10 @@ class lastZero
 
 		System.out.println ("(defect)\tThe last index of zero is: " + lastzero_defect (inArr));
 		System.out.println ("(correct)\tThe last index of zero is: " + lastzero_correct (inArr));
+		
+		//Testlastzero tz = new Testlastzero();
+		//tz.testLastzero_correct();
+		//tz.testLastzero_defect();
 	}
 
 }
