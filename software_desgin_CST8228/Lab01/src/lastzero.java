@@ -12,9 +12,9 @@ class lastZero
 			return -1;
 		}
 		
-		if (x.length >= Integer.MAX_VALUE)
+		if (x.length >= 100000)
 		{
-			System.out.println("Too many inputs! Max number of inputs is:" + Integer.MAX_VALUE);
+			System.out.println("Too many inputs! Max number of inputs is:" + 100000);
 			return -1;
 		}
 		// Effects: if x==null throw NullPointerException 
@@ -42,9 +42,9 @@ class lastZero
 			return -1;
 		}
 		
-		if (x.length >= Integer.MAX_VALUE)
+		if (x.length >= 100000)
 		{
-			System.out.println("Too many inputs! Max number of inputs is:" + Integer.MAX_VALUE);
+			System.out.println("Too many inputs! Max number of inputs is: 100000");
 			return -1;
 		}
 		// Effects: if x==null throw NullPointerException 
@@ -74,9 +74,9 @@ class lastZero
 			return;
 		}
 		
-		if (argv.length >= Integer.MAX_VALUE)
+		if (argv.length >= 100000)
 		{
-			System.out.println("Too many inputs! Max number of inputs is:" + Integer.MAX_VALUE);
+			System.out.println("Too many inputs! Max number of inputs is: 100000");
 			return;
 		}
 		

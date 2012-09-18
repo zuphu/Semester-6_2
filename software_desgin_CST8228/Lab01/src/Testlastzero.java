@@ -24,7 +24,7 @@ public class Testlastzero extends TestCase {
 	
 	@Test
 	public void testLastzero_defect_maxinputs() {
-		assertEquals(-1, lastZero.lastzero_defect(new int[Integer.MAX_VALUE])); //too many arguments
+		assertEquals(-1, lastZero.lastzero_defect(new int[100000])); //too many arguments
 	}
 	
 	@Test
@@ -51,12 +51,12 @@ public class Testlastzero extends TestCase {
 	@Test
 	public void testLastzero_correct_noargs() //no arguments
 	{
-		assertEquals(2, lastZero.lastzero_correct(new int[] {})); 
+		assertEquals(-1, lastZero.lastzero_correct(new int[] {})); 
 	}
 	
 	@Test
 	public void testLastzero_correct_maxinputs() {
-		assertEquals(-1, lastZero.lastzero_correct(new int[Integer.MAX_VALUE])); //too many arguments
+		assertEquals(-1, lastZero.lastzero_correct(new int[100000])); //too many arguments
 	}
 	
 	@Test
