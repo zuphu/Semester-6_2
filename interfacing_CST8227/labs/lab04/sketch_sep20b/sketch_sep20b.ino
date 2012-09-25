@@ -1,3 +1,15 @@
+byte seven_seg_digits[10][8] = { { 0,0,0,1,0,0,0,1},  // = 0
+                                 { 1,0,0,1,1,1,1,1 },  // = 1
+                                 { 0,0,1,1,0,0,1,0 },  // = 2
+                                 { 0,0,0,1,0,1,1,0 },  // = 3
+                                 { 1,0,0,1,1,1,0,0 },  // = 4
+                                 { 0,1,0,1,0,1,0,0 },  // = 5
+                                 { 0,1,0,1,0,0,0,0 },  // = 6
+                                 { 0,0,0,1,1,1,1,1 },  // = 7
+                                 { 0,0,0,1,0,0,0,0 },  // = 8
+                                 { 0,0,0,1,1,1,0,0 }   // = 9
+                                 };
+
 void
 setup()
 {   
@@ -14,23 +26,23 @@ setup()
 void
 loop()
 {
-  digitalWrite(0, LOW);
-  digitalWrite(1, LOW);
-  digitalWrite(2, LOW);
-  digitalWrite(3, LOW);
-  digitalWrite(4, LOW);
-  digitalWrite(5, LOW);
-  digitalWrite(6, LOW);
-  digitalWrite(7, LOW);  
-  delay(500);
-  digitalWrite(0, HIGH);
-  digitalWrite(1, HIGH);
-  digitalWrite(2, HIGH);
-  digitalWrite(3, HIGH);
-  digitalWrite(4, HIGH);
-  digitalWrite(5, HIGH);
-  digitalWrite(6, HIGH);
-  digitalWrite(7, HIGH);  
-  delay(500);
+  static int iii = -1;
+  
+  for (int i = 0; i < 8; ++i)
+    digitalWrite(i, HIGH);
+    
+  if (iii < 9)
+    ++iii;
+  else
+    iii = 0;
+  
+  for (int i = 0; i < 8; ++i)
+    digitalWrite(i, HIGH);
+    f
+  for (byte pin = 0; pin < 8; ++pin)
+  {
+    digitalWrite(pin, seven_seg_digits[iii][pin]);
+  }
+      delay(500);
 }
 
