@@ -9,13 +9,14 @@ byte seven_seg_digits[10][8] = { { 0,0,0,0,0,0,1,1 },   // = 0
                                  { 0,0,0,0,0,0,0,1 },  // = 8
                                  { 0,0,0,0,1,0,0,1 }};  // = 9
 
-int pwmPins[] = {4, 5, 9, 10, 12, 14, 15, 6};
+int pwmPins[] = {4, 5, 9, 10, 12, 14, 15};
 
 #define DISPLAY2 21
 #define DISPLAY1 20
 #define READPIN  2    //(Analog)
+#define LEDPIN   11
+#define DECIMALPIN 6
 
-  
 long previousMillis = 0;
 
 int latchPin = 1; //Pin connected to Pin 12 of 74HC595 (Latch)
@@ -41,6 +42,12 @@ void setup() {
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   
+  pinMode(8, OUTPUT);
+  digitalWrite(8, HIGH);
+  
+  pinMode(3, INPUT_PULLUP);
+  digitalWrite(3, HIGH);
+  
   pinMode(pwmPins[0], OUTPUT);
   pinMode(pwmPins[1], OUTPUT);
   pinMode(pwmPins[2], OUTPUT);
@@ -48,6 +55,8 @@ void setup() {
   pinMode(pwmPins[4], OUTPUT);
   pinMode(pwmPins[5], OUTPUT);
   pinMode(pwmPins[6], OUTPUT);
+  pinMode(DECIMALPIN, OUTPUT);
+  pinMode(LEDPIN, OUTPUT);
   
   Serial.begin(9600);
 }
@@ -55,6 +64,8 @@ void setup() {
 void loop() {
   int readme;
   int readresult;
+  int digit1 = 0, digit2 = 0;
+  boolean decimal = false;
   
   static int iiii = 0;
   
@@ -62,13 +73,33 @@ void loop() {
 
   static int i = 0;
   
+
+  
   readme = analogRead(READPIN);
   
-  readresult = 500L * (long)analogRead()) / 1023L;
+  readresult = 500L * (long)analogRead(READPIN) / 1023L;
   
-  Serial.println(readme);
-    Serial.println(readresult);
+  digit1 = readresult / 100;
+  digit2 = (readresult - digit1 * 100);
+  Serial.println(readresult);
+  Serial.print(digit1);
+  Serial.print(".");
+  Serial.println(digit2);
   
+  if (digit1 > 0)
+  {
+    decimal = true;
+    digitalWrite(LEDPIN, LOW);
+    digit2 /= 10;
+  }
+  else
+  {
+    decimal = false;  
+    digitalWrite(LEDPIN, HIGH);
+    digit1 = digit2 / 10;
+    digit2 = digit2 - (digit1 * 10);
+  }
+    
   if (i == 15)
   {
     shiftup = !shiftup;
@@ -101,22 +132,29 @@ void loop() {
     ++i;
   }
 
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < 7; ++i)
       digitalWrite(pwmPins[i], HIGH);
   
     digitalWrite(DISPLAY1, HIGH);
-    for (int pin = 0; pin < 8; ++pin)
+    for (int pin = 0; pin < 7; ++pin)
     {
-      if (seven_seg_digits[counter][pin] == 0)
+      if (seven_seg_digits[digit1][pin] == 0)
         analogWrite(pwmPins[pin], 31.875);
-    }  
+    }
+    
+    if (decimal)
+        digitalWrite(DECIMALPIN, LOW);
+    else
+        digitalWrite(DECIMALPIN, HIGH);
+      
     delay(10);
     digitalWrite(DISPLAY1, LOW);
     clear();
+    digitalWrite(DECIMALPIN, HIGH);
     digitalWrite(DISPLAY2, HIGH);
     for (int pin = 0; pin < 8; ++pin)
     {
-      if (seven_seg_digits[iii][pin] == 0)
+      if (seven_seg_digits[digit2][pin] == 0)
         analogWrite(pwmPins[pin], 31.875);
     }
     delay(10);
