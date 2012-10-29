@@ -1,4 +1,4 @@
-byte seven_seg_digits[10][8] = { { 0,0,0,0,0,0,1,1},   // = 0
+byte seven_seg_digits[10][8] = { { 0,0,0,0,0,0,1,1 },   // = 0
                                  { 1,0,0,1,1,1,1,1 },  // = 1
                                  { 0,0,1,0,0,1,0,1 },  // = 2
                                  { 0,0,0,0,1,1,0,1 },  // = 3
@@ -13,7 +13,7 @@ int pwmPins[] = {4, 5, 9, 10, 12, 14, 15, 6};
 
 #define DISPLAY2 21
 #define DISPLAY1 20
-
+#define READPIN  2    //(Analog)
 
   
 long previousMillis = 0;
@@ -48,15 +48,26 @@ void setup() {
   pinMode(pwmPins[4], OUTPUT);
   pinMode(pwmPins[5], OUTPUT);
   pinMode(pwmPins[6], OUTPUT);
+  
+  Serial.begin(9600);
 }
 
 void loop() {
+  int readme;
+  int readresult;
+  
   static int iiii = 0;
   
   unsigned int timer = millis();
 
   static int i = 0;
-   
+  
+  readme = analogRead(READPIN);
+  
+  readresult = 500L * (long)analogRead()) / 1023L;
+  
+  Serial.println(readme);
+    Serial.println(readresult);
   
   if (i == 15)
   {
