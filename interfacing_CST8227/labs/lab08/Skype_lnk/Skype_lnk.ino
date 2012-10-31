@@ -22,11 +22,17 @@ const int draw_circle[CIRCLE_SIZE][2] = { {COL2, ROW1}, {COL3, ROW1}, {COL1, ROW
 const int draw_square[SQUARE_SIZE][2] = { {COL1, ROW1}, {COL2, ROW1}, {COL3, ROW1}, {COL4, ROW1}, {COL1, ROW2}, {COL4, ROW2}, {COL1, ROW3}, {COL4, ROW3}, {COL1, ROW4}, {COL2, ROW4},
                                     {COL3, ROW4}, {COL4, ROW4} };
 #define X_SIZE 8
-const int draw_x[X_SIZE][8] = { {COL1, ROW1}, {COL4, ROW1}, {COL2, ROW2},  {COL3, ROW2}, {COL2, ROW3}, {COL3, ROW3}, {COL1, ROW4},{COL4, ROW4} };
+const int draw_x[X_SIZE][2] = { {COL1, ROW1}, {COL4, ROW1}, {COL2, ROW2},  {COL3, ROW2}, {COL2, ROW3}, {COL3, ROW3}, {COL1, ROW4},{COL4, ROW4} };
 
 #define Z_SIZE 10
 const int draw_z[Z_SIZE][2] = { {COL1, ROW1}, {COL2, ROW1}, {COL3, ROW1}, {COL4, ROW1}, {COL3, ROW2}, {COL2, ROW3}, {COL1, ROW4}, {COL2, ROW4}, {COL3, ROW4}, {COL4, ROW4} };
 
+#define SCAN_SIZE 16
+const int scan[SCAN_SIZE][2] = { {COL1, ROW1}, {COL2, ROW1}, {COL3, ROW1}, {COL4, ROW1}, {COL4, ROW2}, {COL4, ROW3}, {COL4, ROW4}, {COL3, ROW4}, {COL2, ROW4}, {COL1, ROW4},
+                       {COL1, ROW3}, {COL1, ROW2}, {COL2, ROW2}, {COL3, ROW2}, {COL3, ROW3}, {COL2, ROW3} };
+int     SCAN_DELAY = 500;
+int     SCAN_INDEX = 0;
+boolean SCAN_FORWARD = false;
 void setup()
 {
   Serial.begin(9600);
@@ -47,6 +53,7 @@ void setup()
 
 void loop()
 {
+  static boolean changeSpeed = false;
   int i = 0;
   boolean isNumber = false;
   char *tmpValue;
@@ -76,6 +83,10 @@ void loop()
               commandbuffer[i++] = Serial.read();
            }
            commandbuffer[i++]='\0';
+           if ((strcmp(commandbuffer, "f,F") == 0) || strcmp(commandbuffer, "s,S") == 0)
+           {
+             changeSpeed = true;
+           }
         }
         
         if (value = atoi(commandbuffer))
@@ -94,7 +105,7 @@ void loop()
           
           Serial.println(value);
           Serial.print("Is number?:");
-          Serial.println(isNumber);     
+          Serial.println(isNumber);
     }
     
     if (resetAll)
@@ -160,10 +171,6 @@ void loop()
        {
          digitalWrite(COL3, HIGH); digitalWrite(ROW4, LOW);  
        }
-       else if (strcmp(commandbuffer, "f,F") == 0)
-       {
-         digitalWrite(COL4, HIGH); digitalWrite(ROW4, LOW);  
-       }
        else if (strcmp(commandbuffer, "m,M") == 0)
        {         
           for (int ii = 0; ii < NUM_ROWS; ++ii)
@@ -225,18 +232,69 @@ void loop()
      }
      else if (strcmp(commandbuffer, "s,S") == 0)
      {
-       Serial.println("ssslower");
+        if (changeSpeed)
+          SCAN_DELAY += 100;
+        changeSpeed = false;
      }
      else if (strcmp(commandbuffer, "f,F") == 0)
      {
-       Serial.println("fffastr");
+        if (changeSpeed)
+          SCAN_DELAY -= 100;
+        changeSpeed = false;
      }
    }
-    
-    if (value == 50)
-    {
-      Serial.println("Sexy");
+   
+   //start move the scan
+   if ((strcmp(commandbuffer, "s,S") == 0) || (strcmp(commandbuffer, "f,F") == 0))
+   {
+      unsigned long entryTime = millis();
+      unsigned long elapsedTime = millis();
+      
+      if (SCAN_INDEX > SCAN_SIZE)
+      {
+        SCAN_INDEX = SCAN_SIZE;
+        SCAN_FORWARD = false;
+      }
+      
+      if (SCAN_INDEX < 0)
+      {
+        SCAN_INDEX = 0;
+        SCAN_FORWARD = true;
+      }
+      
+      Serial.println("---SCANNING---");
+      while (elapsedTime - entryTime <= SCAN_DELAY)
+      {
+        elapsedTime = millis();
+        if (SCAN_FORWARD)
+        {
+          for (int x = 0; x < SCAN_INDEX; ++x)
+          {
+            digitalWrite(scan[x][0], HIGH);
+            digitalWrite(scan[x][1], LOW);
+            delay(1);
+            digitalWrite(scan[x][0], LOW);
+            digitalWrite(scan[x][1], HIGH);
+          }
+        }
+        else
+        {
+          for (int x = 0; x < SCAN_INDEX; ++x)
+          {
+            digitalWrite(scan[x][0], HIGH);
+            digitalWrite(scan[x][1], LOW);
+            delay(1);
+            digitalWrite(scan[x][0], LOW);
+            digitalWrite(scan[x][1], HIGH);
+         }
+      }
     }
+    if (SCAN_FORWARD)
+      ++SCAN_INDEX;
+    else
+      --SCAN_INDEX;
+      //delay(SCAN_DELAY);
+   }
 
-    delay(5);
+    //delay(5);
 } 
