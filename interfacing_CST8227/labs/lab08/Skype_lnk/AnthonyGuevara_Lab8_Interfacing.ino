@@ -269,7 +269,7 @@ void loop()
         if (SCAN_FORWARD)
         {
           for (int x = 0; x < SCAN_INDEX; ++x)
-          {  
+          {
             digitalWrite(scan[x][0], HIGH);
             digitalWrite(scan[x][1], LOW);
             delay(1);
