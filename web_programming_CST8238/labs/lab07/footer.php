@@ -1,1 +1,1 @@
-&copy2012 Web Programming CST8238<br/><br/>Lab 6 - Bottles of Beer
+&copy2012 Web Programming CST8238<br/><br/>Lab 7 -Programming Arrays, Objects

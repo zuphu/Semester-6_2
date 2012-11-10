@@ -13,7 +13,7 @@
         </div>
         <div id="content">
 			<?php
-				include "all.php";
+				include "Array1.php";
 			?>
         </div>
         <div id="footer">
@@ -22,7 +22,7 @@
 		?>
 		</div>
 
-        <div id="getHelp">
+        <div id="topMenu">
 			<?php
 				include "menu.php";
 			?>
