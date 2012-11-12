@@ -276,7 +276,7 @@ void loop()
             digitalWrite(scan[x][0], LOW);
             digitalWrite(scan[x][1], HIGH);
           }
-        }
+        }  
         else
         {
           for (int x = 0; x < SCAN_INDEX; ++x)
