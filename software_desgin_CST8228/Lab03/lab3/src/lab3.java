@@ -44,8 +44,8 @@ class lab3 {
        	char peekOpr=' ';    
     	
      	//calc_output (stkOpr,strOpr,peekOpr,num, stackSize);    	
-       	calc_output(0,0,' ', 40, 10000);
-       	calc_output(1,0,' ', 40, 10000);
+       	calc_output(0,0,' ',40, 10000);
+       	calc_output(1,0,' ',40, 10000);
        	calc_output(0, 1,' ', 40, 10000);
        	calc_output(0, 1,'a', 40, 10000);
        	calc_output(0,0,'a',0, 10000);
