@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Lab10 Guess Guess</string>
+    <string name="edit_message">Enter a guess from 1 to 10</string>
+    <string name="button_send">Send Away!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Lab 10</string>
+    <string name="title_activity_display_message">2nd Activity Header goes here</string>
+
+</resources>
