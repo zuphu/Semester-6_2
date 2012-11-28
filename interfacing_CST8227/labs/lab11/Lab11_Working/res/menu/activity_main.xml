@@ -1,0 +1,57 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/oneTo9"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="1 to 9"/>
+    <item
+        android:id="@+id/oneTo99"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="1 to 99"/>
+    <item
+        android:id="@+id/oneTo999"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="1 to 999"/>
+    <item
+        android:id="@+id/oneTo9999"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="1 to 9,999"/>
+    <item
+        android:id="@+id/oneTo99999"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="1 to 99,999"/>
+    <item
+        android:id="@+id/oneTo999999"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="1 to 999,999"/>
+    <item
+        android:id="@+id/Hints"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Hints">
+        <menu>
+            <item
+                android:id="@+id/bigHint"
+                android:orderInCategory="100"
+                android:showAsAction="never"
+                android:title="Big Hint"/>
+            <item
+                android:id="@+id/mediumHint"
+                android:orderInCategory="100"
+                android:showAsAction="never"
+                android:title="Medium Hint"/>
+            <item
+                android:id="@+id/smallHint"
+                android:orderInCategory="100"
+                android:showAsAction="never"
+                android:title="Small Hint"/>
+        </menu>
+    </item>
+
+</menu>
