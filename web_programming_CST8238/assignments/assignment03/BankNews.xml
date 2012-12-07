@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0">
+	<channel>
+        	<title>Playdoh Bank News</title>
+        	<description>Playdoh Bank Corporate News Feed</description>
+        	<link>http://playdoh.algonquincollege.com/courses/cst8238</link>
+ 
+        	<item>
+                	<title>News Entry 1</title>
+                	<description>Lorem ipsum dolor sit amet, consectetur est maximis. Pars nimis communiter viderent laboris quam, ad quae videmus considero et cum temperantiam itaque quaestio videbatur. Non vehementer obscurare iucunde, elucere melius beate iudicia, elucere agendo facilius, foris si fuisse partes posse criminum animadverti.</description>
+                	<link>http://www.wikipedia.org/</link>
+        	</item>
+
+        	<item>
+                	<title>News Entry 2</title>
+                	<description>Quae quae quantum altera accommodatior aliis tantum quaestio dolore quarum iudicium censores tranquillis vivendi est totam aliis. Itaque voluissent directam videtur ipsas, quam opere modo. Nihil octo niti possit! Nec ad elucere elucere materia modo vetere voluptatibus mihi. </description>
+                	<link>http://www.google.com/</link>
+        	</item>
+
+        	<item>
+                	<title>News Entry 3</title>
+                	<description>Dixerim criminum in esse difficultatis. Debet vitam huius in meditati, sic se dicendi confidere, iudicii reliquarum et ad magno Iuniani et iudicii! Confidere quaestio iudicium rationem quod vivendi veneficii vim sunt foris omnem partitionem, enim propositum mihi re vacillant nimis</description>
+                	<link>http://www.algonquincollege.com/</link>
+        	</item> 
+	</channel>
+</rss>

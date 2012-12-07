@@ -1,6 +1,7 @@
 <?php
 	// we always have to start session state
 	session_start();
+	require "MySQLConnectionInfo.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -54,12 +55,7 @@
 
 
 		
-		 <?php
-			$host = "localhost";
-			$username = "guev0019";
-			$password = "guev001944dga";
-			$database = "lab9_guev0019";
-			
+		 <?php			
 			$dbConnection = mysql_connect($host, $username, $password);
 	
 			if(!$dbConnection)
@@ -81,12 +77,14 @@
 			$get_sin = $_POST["sin"];
 			$get_password = $_POST["password"];
 			
-			$sqlQueryInsert = "INSERT INTO persons(FirstName, LastName, EmailAddress, TelephoneNumber, SocialInsuranceNumber, Password) VALUES('$get_firstName', 
+						// $sqlQueryInsert = "INSERT INTO persons (FirstName, LastName, EmailAddress, Password, SocialInsuranceNumber, TelephoneNumber) VALUES('1', '2', '3', '4', '5', '6')";
+						
+			$sqlQueryInsert = "INSERT INTO persons(FirstName, LastName, EmailAddress, Password, SocialInsuranceNumber, TelephoneNumber) VALUES('$get_firstName', 
 																			'$get_lastName', '$get_email', '$get_telephone', '$get_sin', '$get_password')";
 				
 			if ($get_firstName != "" && $get_lastName != "" && $get_email != "" && $get_telephone != "" && $get_sin != "" && $get_password != "")
 			{
-				header("Location: ViewAllAccounts.php");
+				header("Location: Login.php");
 				if(mysql_query($sqlQueryInsert))
 				{
 					$error = "Data was submitted";

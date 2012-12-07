@@ -32,29 +32,18 @@
 			
 			$email = $_POST["email"];
 			$passwd = $_POST["pass"];
-			echo "$email $passwd";
+			
 			if ($email != "" && password != "")
 			{
-				echo "[1]";
 				$loginQuery = "SELECT * FROM PERSONS where EmailAddress = '$email' AND Password = '$passwd' ";
-				echo "[2]";
 
-				
 				if($result = mysql_query($loginQuery))
-					$error = "Person Successfully Added";
+					$error = "";
 				else
-					$error = "Person Could not be added ".mysql_error();
+					$error = "Unable to login ".mysql_error();
 				
-				echo "[5]";
 				$rowCount = mysql_num_rows($result);
-				echo "$rowCount";
 				$row = mysql_fetch_row($result);
-				echo "$row[0]<br/>";
-				echo "$row[1]<br/>";
-				echo "$row[2]<br/>";
-				echo "$row[3]<br/>";
-				echo "$row[4]<br/>";
-				echo "$row[5]<br/>";
 				
 				if ($rowCount > 0)
 				{
@@ -70,6 +59,7 @@
 				else
 					echo "<font color='red'><h1>Invalid login credentials</h1></font>";
 			}
+
 			
 			if ($redirect == true)
 				header("Location: ViewAllAccounts.php");
@@ -86,6 +76,7 @@
 				<tr>
 				<td>Password: </td><td><input type="password" name="pass">
 				</tr>
+				<tr>
 				<td><input type="submit" value="Login"></td>
 				</tr>
 			</table>
